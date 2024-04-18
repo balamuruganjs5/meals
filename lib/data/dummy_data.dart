@@ -9,6 +9,7 @@ enum Filters {
   isLactoseFree,
 }
 
+// ignore: constant_identifier_names
 const available_category = [
   Category(
     id: 'c1',

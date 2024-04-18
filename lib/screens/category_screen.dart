@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/data/dummy_data.dart';
 import 'package:meals/modal/category.dart';
 import 'package:meals/modal/meal.dart';
 import 'package:meals/screens/meal_screen.dart';
 import 'package:meals/widgets/category_item.dart';
 
-class CategoryScreen extends StatelessWidget {
-  const CategoryScreen(
-      {super.key, required this.toggleFavourites, required this.mealsData});
-
-  final Function(Meal meal) toggleFavourites;
+class CategoryScreen extends ConsumerWidget {
+  const CategoryScreen({
+    super.key,
+    required this.mealsData,
+  });
   final List<Meal> mealsData;
 
   void selectCategory(BuildContext context, Category category) {
@@ -21,14 +22,13 @@ class CategoryScreen extends StatelessWidget {
         builder: (ctx) => MealScreen(
           title: category.title,
           meals: filteredCategory,
-          toggleFavourites: toggleFavourites,
         ),
       ),
     );
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       decoration: const BoxDecoration(
         color: Colors.black,
